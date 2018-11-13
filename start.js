@@ -18,7 +18,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     }
 });
 client.on('messageReactionRemove', (reaction, user) => {
-    if (reaction.count < process.env.pin_trigger && reaction.emoji.name === '📌') {
+    if (reaction.count <= process.env.unpin_trigger && reaction.emoji.name === '📌') {
         var check = reaction.message.reactions.find(em => em.emoji.name === '✅');
         if (check !== null)
         	if (check.me) {
