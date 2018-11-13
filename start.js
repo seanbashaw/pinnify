@@ -12,13 +12,13 @@ client.on('message', message => {
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
-    if (!reaction.message.pinned && reaction.count >= 4 && reaction.emoji.name === '📌') {
+    if (!reaction.message.pinned && reaction.count >= process.env.pin_trigger && reaction.emoji.name === '📌') {
         reaction.message.react('✅')
         reaction.message.pin();
     }
 });
 client.on('messageReactionRemove', (reaction, user) => {
-    if (reaction.count < 4 && reaction.emoji.name === '📌') {
+    if (reaction.count < process.env.pin_trigger && reaction.emoji.name === '📌') {
         var check = reaction.message.reactions.find(em => em.emoji.name === '✅');
         if (check.me) {
             reaction.message.unpin();
