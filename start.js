@@ -8,6 +8,10 @@ client.login(process.env.auth);
 client.on('message', message => {
     if (message.type === "PINS_ADD" && message.author.bot === true) {
         message.delete();
+    }else{
+    	if (message.isMentioned()){
+    		message.react('👋');
+    	}
     }
 });
 
