@@ -9,7 +9,7 @@ client.on('message', message => {
     if (message.type === "PINS_ADD" && message.author.bot === true) {
         message.delete();
     }else{
-    	if (message.isMentioned()){
+    	if (message.isMemberMentioned(client.user)){
     		message.react('👋');
     	}
     }
