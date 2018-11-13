@@ -20,7 +20,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 client.on('messageReactionRemove', (reaction, user) => {
     if (reaction.count < process.env.pin_trigger && reaction.emoji.name === '📌') {
         var check = reaction.message.reactions.find(em => em.emoji.name === '✅');
-        if (check.me) {
+        if (typeof check !== undefined && check.me) {
             reaction.message.unpin();
             check.remove();
         }
